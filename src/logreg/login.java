@@ -76,7 +76,7 @@ public class login extends HttpServlet {
             try {
                 boolean flag = sqlD.LoginCorrect(name, password);
                 if (flag) {
-                    out.println("<h1>»¶Ó­Äã:" + name + "</h1>");
+                    out.println("»¶Ó­Äã:" + name );
                 } else {
                     out.println("<h1>SOrryÃÜÂë´íÎó£¡µã»÷ÖØĞÂ<a href='login.html'>µÇÂ¼</a></h1>");
 

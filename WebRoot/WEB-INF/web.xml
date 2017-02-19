@@ -12,6 +12,25 @@
   <url-pattern>/login</url-pattern>
  </servlet-mapping>
  
+  <servlet>
+  <servlet-name>json1</servlet-name>
+  <servlet-class>logreg.gethname</servlet-class>
+ </servlet>
+
+ <servlet-mapping>
+  <servlet-name>json1</servlet-name>
+  <url-pattern>/gethname</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet>
+  <servlet-name>json2</servlet-name>
+  <servlet-class>logreg.getrname</servlet-class>
+ </servlet>
+
+ <servlet-mapping>
+  <servlet-name>json2</servlet-name>
+  <url-pattern>/getrname</url-pattern>
+ </servlet-mapping>
  
  <welcome-file-list>
   <welcome-file>index.jsp</welcome-file>
@@ -19,4 +38,8 @@
  <login-config>
   <auth-method>BASIC</auth-method>
  </login-config>
+ 
+ 
+ 
+ 
 </web-app>
