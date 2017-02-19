@@ -6,22 +6,25 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_7.0">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.2">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
-			<attribute name="owner.project.facets" value="jst.web.jstl"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="D:/workspaces/数据源（开源项目dbcp）/commons/commons-collections-3.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/workspaces/数据库驱动/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="D:/workspaces/数据源（开源项目dbcp）/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="D:/workspaces/数据源（开源项目dbcp）/commons-pool-1.6.jar"/>
+	<classpathentry exported="true" kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/workspaces/数据源（开源项目dbcp）/commons/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/json-lib-2.4-jdk15-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/workspaces/jar包/json依赖包/json-lib-2.4-jdk15-sources.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

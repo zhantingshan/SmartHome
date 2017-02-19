@@ -3,7 +3,7 @@ package jdbc;
 /**
  * 
  * 2008-12-6
- * bean�ļ�
+ * bean锟侥硷拷
  * @author <a href="mailto:liyongibm@gmail.com">liyong</a>
  * 
  */
@@ -13,7 +13,9 @@ public class User {
 	private String  password;
 	private String  email;
 	private String  Tel;
-
+	private String  roomname;
+	private String  hname;
+	
 	public User() {
 
 	}
@@ -71,6 +73,14 @@ public class User {
 		this.Tel = Tel;
 	}
 	
+/*	public String getRoomname() {
+		return roomname;
+	}
 
+	public void setRoomname(String roomname) {
+		this.roomname = roomname;
+	}
+	
+*/
 	
 }

@@ -1,5 +1,7 @@
 package jdbc;
 
+import net.sf.json.JSONArray;
+
 
 
 /**
@@ -18,8 +20,8 @@ public class UserDaoTest {
 		UserDao userDao = DaoFactory.getInstance().getUserDao();
 		// UserDao userDao = new UserDaoJdbcImpl();
 		// System.out.println(userDao);
-		//		
-		User user = new User();
+		//²åÈë		
+		/*User user = new User();
 		user.setPassword("12ddd3");
 		user.setName("dao name3");
 		user.setEmail("1222@1.com");
@@ -28,7 +30,7 @@ public class UserDaoTest {
 		//ï¿½ï¿½ï¿½ï¿½
 		userDao.addUser(user);
 		System.out.println(user.getId());
-		
+		*/
 		//ï¿½ï¿½id
 //		User u = userDao.findUser(user.getName(), null);
 //		System.out.println(u.getId());
@@ -43,9 +45,21 @@ public class UserDaoTest {
 //		 System.out.println(u1);
 //		 userDao.delete(u1);
 //         
-		 
-
-
+		 //µÃµ½·¿¼äÐÅÏ¢
+	/*	User user = new User();
+		JSONArray rname = new JSONArray();
+		user.setId(5);
+		//ï¿½ï¿½ï¿½ï¿½
+		rname=userDao.getRoomname(user);
+		System.out.println(rname);
+*/
+		User user = new User();
+		JSONArray hname = new JSONArray();
+		user.setId(5);
+		String name="¿ÍÌü";
+		//ï¿½ï¿½ï¿½ï¿½
+		hname=userDao.getHname(user,name);
+		System.out.println(hname);
 
 	
 	}

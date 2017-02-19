@@ -1,5 +1,7 @@
 package jdbc;
 
+import net.sf.json.JSONArray;
+
 
 /**
  * �ӿ�
@@ -19,4 +21,7 @@ public interface UserDao {
 
 	public void delete(User user);
 
+	public JSONArray getRoomname(User user);
+	
+	public JSONArray getHname(User user,String name);
 }
