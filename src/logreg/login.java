@@ -1,24 +1,24 @@
 package logreg;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 import datasourse.JdbcUtils;
 
 
 public class login extends HttpServlet {
-    sqlDemo sqlD = null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	sqlDemo sqlD = null;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -32,18 +32,18 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        resp.setContentType("text/html;charset=utf-8");
-        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
-        PrintWriter out = resp.getWriter();
+        ServletOutputStream out = resp.getOutputStream();
 
-        // ×¢²á
+        // ×¢ï¿½ï¿½
         if (!action.equals("login")) {
             String name = req.getParameter("sname");
             String password = req.getParameter("spassword1");
             String mail = req.getParameter("mail");
             String tel = req.getParameter("tel");
-          
+           
             
             boolean isEmpty = (name != null && !name.equals("")
                     && password != null && !password.equals("")
@@ -53,32 +53,35 @@ public class login extends HttpServlet {
             System.out.println(isEmpty);
             if (isEmpty) {
                 try {
+                	 System.out.println("4");
                     boolean flag = sqlD.InsertData(name, password,mail,tel);
+                    System.out.println("3");
                     if (flag) {
-                        out.println("<h1>¹§Ï²Äã" + name
-                                + ":×¢²á³É¹¦µã»÷<a href='login.html'>µÇÂ¼</a></h1>");
+                    	out.write("sign-up".getBytes());
                     } else {
-                        out.println("<h1>Soory"
-                                + name
-                                + ":×¢²áÊ§°Ü,¸ÃÓÃ»§ÒÑ¾­´æÔÚ,µã»÷<a href='Register.html'>ÖØÐÂ×¢²á</a></h1>");
+                    	out.write("fsign-up".getBytes());
+                
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                out.println("<h1>ËùÒÔÑ¡Ïî¾ù²»¿ÉÒÔÎª¿Õ£¡£¡£¡µã»÷<a href='Register.html'>ÖØÐÂ×¢²á</h1>");
+            	out.write("can't be enpty".getBytes());
             }
 
-        } else { // µÇÂ¼
+        } else { // ï¿½ï¿½Â¼
             String name = req.getParameter("name");
             String password = req.getParameter("password");
-
+           // System.out.println(name);
             try {
                 boolean flag = sqlD.LoginCorrect(name, password);
+                System.out.println(flag);
                 if (flag) {
-                    out.println("»¶Ó­Äã:" + name );
+                	out.write("success".getBytes()); 
+                	//out.print("ï¿½ï¿½Ó­ï¿½ï¿½:" + name );
                 } else {
-                    out.println("<h1>SOrryÃÜÂë´íÎó£¡µã»÷ÖØÐÂ<a href='login.html'>µÇÂ¼</a></h1>");
+                	out.write("fail".getBytes());
+                	//out.print("<h1>SOrryï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó£¡µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½<a href='login.html'>ï¿½ï¿½Â¼</a></h1>");
 
                 }
             } catch (Exception e) {
@@ -107,33 +110,38 @@ class sqlDemo {
         statement = conn.createStatement();
     }
 
-    // ²é¿´µÇÂ¼ÓÃ»§ÃûºÍÃÜÂëÊÇ·ñÕýÈ·
+    // ï¿½é¿´ï¿½ï¿½Â¼ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·
     public boolean LoginCorrect(String name, String password) throws Exception {
         String sql = "select * from user where name = '" + name + "'";
         ResultSet rs = statement.executeQuery(sql);
-        // ²é¿´ÊÇ·ñºÏ·¨
+        // ï¿½é¿´ï¿½Ç·ï¿½Ï·ï¿½
         while (rs.next()) {
-            if (name.equals(rs.getString("name"))
-                    && password.equals(rs.getString("password")))
-                return true;
+        	
+        	String nname=rs.getString("name");
+        	String passwordf=rs.getString("password");
+            if (name.equals(nname) && password.equals(passwordf)){
+                return true;}
         }
         rs.close();
         return false;
     }
 
-    // ²åÈëÊý¾Ý
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public boolean InsertData(String name, String password,String mail,String tel) throws Exception {
         String sql = "insert into user values (null,'" + name + "','"
                 + password+"','"+mail+"','"+tel+ "')";
         String isAgainSql = "select name from user where name = '" + name
                 + "'";
         ResultSet rs = statement.executeQuery(isAgainSql);
-        // ²é¿´ÊÇ·ñÓÃ»§ÃûÖØ¸´
+        // ï¿½é¿´ï¿½Ç·ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½
         while (rs.next()) {
             if (rs.getString("name").equals(name)) {
+            	 System.out.println("2");
                 return false;
             }
         }
+        
+        System.out.println("1");
 
         statement.executeUpdate(sql);
         rs.close();

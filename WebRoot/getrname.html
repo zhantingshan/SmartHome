@@ -16,11 +16,11 @@
 $('#showdata').on('click',function(){
   $('#box').show();
   
-  $.getJSON('gethname',
-   {rname:"客厅",name:"hubby"},
+  $.getJSON('getrname',
+   {name:"hubby"},
    function(oData){
     // oData = {"username":"nimojs","userid":1}
-    $('#info').html(oData[0].hname);
+    $('#info').html(oData[0].roomname);
   })
 })
 </script>

@@ -41,5 +41,45 @@
  
  
  
+   <servlet>
+  <servlet-name>json3</servlet-name>
+  <servlet-class>logreg.inserthname</servlet-class>
+ </servlet>
+
+ <servlet-mapping>
+  <servlet-name>json3</servlet-name>
+  <url-pattern>/inhname</url-pattern>
+ </servlet-mapping>
+ 
+    <servlet>
+  <servlet-name>json4</servlet-name>
+  <servlet-class>logreg.insertrname</servlet-class>
+ </servlet>
+
+ <servlet-mapping>
+  <servlet-name>json4</servlet-name>
+  <url-pattern>/inrname</url-pattern>
+ </servlet-mapping>
+ 
+   <servlet>
+  <servlet-name>json5</servlet-name>
+  <servlet-class>logreg.deleteroom</servlet-class>
+ </servlet>
+
+ <servlet-mapping>
+  <servlet-name>json5</servlet-name>
+  <url-pattern>/deleteroom</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet>
+  <servlet-name>json6</servlet-name>
+  <servlet-class>logreg.deletehname</servlet-class>
+ </servlet>
+
+ <servlet-mapping>
+  <servlet-name>json6</servlet-name>
+  <url-pattern>/deletehname</url-pattern>
+ </servlet-mapping>
+ 
  
 </web-app>

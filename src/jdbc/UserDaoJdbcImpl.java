@@ -95,9 +95,9 @@ public class UserDaoJdbcImpl implements UserDao {
 		ResultSet rs = null;
 		try {
 			conn = JdbcUtils.getConnection();
-			String sql = "SELECT r.roomname FROM user.user u,user.room r where r.id=u.id and r.id=? ";
+			String sql = "SELECT r.roomname FROM user.user u,user.room r where r.username=u.name and u.name=? ";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, user.getId());			
+			ps.setString(1, user.getName());			
 			rs=ps.executeQuery();
 			try {
 				roomname=getJson(rs) ;
@@ -122,9 +122,9 @@ public class UserDaoJdbcImpl implements UserDao {
 		ResultSet rs = null;
 		try {
 			conn = JdbcUtils.getConnection();
-			String sql = "SELECT h.hname FROM user.household h ,user.user u,user.room r where r.id=u.id and h.id=? and r.roomname=? ";
+			String sql = "SELECT h.hname FROM user.household h ,user.user u,user.room r where r.username=u.name and h.username=? and r.roomname=?  ";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, user.getId());	
+			ps.setString(1, user.getName());	
 			ps.setString(2, name);
 			rs=ps.executeQuery();
 			try {
@@ -142,6 +142,92 @@ public class UserDaoJdbcImpl implements UserDao {
 		
 		return Hname;
 	}
+	
+	public void inserthname(User user,String rname,String hname){
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "insert into user.household values (?,?,?) ";
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(3, user.getName());	
+			ps.setString(1, rname);
+			ps.setString(2, hname);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DaoException(e.getMessage(), e);
+		} finally {
+			JdbcUtils.free(rs, ps, conn);
+		}
+		
+		
+
+	}
+	
+	public void insertrname(User user,String rname){
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = JdbcUtils.getConnection();
+			String sql = "insert into user.room values (?,?) ";
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, user.getName());	
+			ps.setString(2, rname);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DaoException(e.getMessage(), e);
+		} finally {
+			JdbcUtils.free(rs, ps, conn);
+		}
+			
+
+	}
+	
+	public void deleteroom(User user,String rname) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = JdbcUtils.getConnection();//1
+			String sql = "Delete from user.room where user.room.username=? and user.room.roomname=? ";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, user.getName());
+			ps.setString(2, rname);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new DaoException(e.getMessage(), e);
+		} finally {
+			JdbcUtils.free(rs, ps, conn);
+		}
+
+	}
+	
+	public void deletehname(User user,String rname,String hname) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = JdbcUtils.getConnection();//1
+			String sql = "Delete from user.household where user.household.hname=? and user.household.roomname=? and user.household.username=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(3, user.getName());
+			ps.setString(2, rname);
+			ps.setString(1, hname);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			throw new DaoException(e.getMessage(), e);
+		} finally {
+			JdbcUtils.free(rs, ps, conn);
+		}
+
+	}
+	
 	
 	public User getUser(int userId) {
 		Connection conn = null;

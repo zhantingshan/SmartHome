@@ -5,24 +5,23 @@
 <title>无标题文档</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
-
-<body>
 <span id="showdata">查看资料</span>
 <div style="display:none;" id="box">
   <h2>用户信息</h2>
-  <p id="info"></p>
+  <p id="info"><img src="loading.gif" /></p>
 </div>
 <script>
 $('#showdata').on('click',function(){
   $('#box').show();
   
-  $.getJSON('gethname',
-   {rname:"客厅",name:"hubby"},
+  $.getJSON('inhname',
+   {username:"詹婷珊", hname:"电视",rname:"房间1"},
    function(oData){
     // oData = {"username":"nimojs","userid":1}
-    $('#info').html(oData[0].hname);
+    $('#info').html(oData);
   })
 })
 </script>
+<body>
 </body>
 </html>

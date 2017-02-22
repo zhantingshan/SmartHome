@@ -1,6 +1,7 @@
 package jdbc;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 
 
@@ -20,7 +21,7 @@ public class UserDaoTest {
 		UserDao userDao = DaoFactory.getInstance().getUserDao();
 		// UserDao userDao = new UserDaoJdbcImpl();
 		// System.out.println(userDao);
-		//²åÈë		
+		//ï¿½ï¿½ï¿½ï¿½		
 		/*User user = new User();
 		user.setPassword("12ddd3");
 		user.setName("dao name3");
@@ -44,24 +45,55 @@ public class UserDaoTest {
 //		 User u1 = userDao.getUser(4);
 //		 System.out.println(u1);
 //		 userDao.delete(u1);
-//         
-		 //µÃµ½·¿¼äĞÅÏ¢
-	/*	User user = new User();
+//    
+		
+/*		 //ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+		User user = new User();
 		JSONArray rname = new JSONArray();
-		user.setId(5);
+		user.setName("hubby");
 		//ï¿½ï¿½ï¿½ï¿½
 		rname=userDao.getRoomname(user);
 		System.out.println(rname);
 */
+	
+/*		
 		User user = new User();
 		JSONArray hname = new JSONArray();
-		user.setId(5);
-		String name="¿ÍÌü";
+		user.setName("hubby");
+		String name="å®¢å…";
 		//ï¿½ï¿½ï¿½ï¿½
 		hname=userDao.getHname(user,name);
 		System.out.println(hname);
 
-	
+*/		
+	/*	
+		User user = new User();
+		user.setName("hubby");
+		String hname="ç”µçƒ­æ°´å£¶";
+		String rname="å®¢å…";
+		//ï¿½ï¿½ï¿½ï¿½
+		userDao.inserthname(user,rname,hname);
+		System.out.println(hname);
+	*/	
+		
+		/*
+		User user = new User();
+		user.setName("è©¹å©·çŠ");
+		String rname="å®¢å…12";
+		//ï¿½ï¿½ï¿½ï¿½
+		userDao.insertrname(user,rname);
+		System.out.println(rname);
+		*/
+		
+		User user = new User();
+		user.setName("hubby");
+		String rname="å®¢å…";
+		String hanme="ç©ºè°ƒ";
+		//ï¿½ï¿½ï¿½ï¿½
+		userDao.deletehname(user,rname,hanme);
+		System.out.println(rname);
+		
+		
 	}
 
 }

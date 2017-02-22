@@ -1,9 +1,9 @@
 package logreg;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,21 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import jdbc.DaoFactory;
 import jdbc.User;
 import jdbc.UserDao;
-import net.sf.json.JSONArray;
 
-public class getrname extends HttpServlet {
+public class deleteroom extends HttpServlet {
 
     /**
-	 * 从客户端取得name（用户名），查询该用户所有房间名，以json格式发送给客户端
-	 * 例如[{"roomname":"房间1"},{"roomname":"房间2"},{"roomname":"房间3"}]
-	 *  
+	 * 取得客户端中username（客户名），rname（房间名），hname(新增的电器名)插入数据库，
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-    	     this.doPost(req, resp);
+    	     this.doGet(req, resp);
 
     }
 
@@ -34,27 +31,28 @@ public class getrname extends HttpServlet {
             throws ServletException, IOException {
     	  resp.setContentType("text/html;charset=utf-8");
           req.setCharacterEncoding("utf-8");
+          ServletOutputStream out = resp.getOutputStream();
           
           //需要接受的参数
-          String name = req.getParameter("name");
+          String username = req.getParameter("username");
+          String rname = req.getParameter("rname");
           
-          PrintWriter out = resp.getWriter();
+          System.out.println(rname);
           
           UserDao userDao = DaoFactory.getInstance().getUserDao();
           User user = new User();
-  		  JSONArray rname = new JSONArray();
-  		  user.setName(name);
+  		  user.setName(username);
+  		  //����
+  		  userDao.deleteroom(user,rname);
 
-		  rname=userDao.getRoomname(user);
-          
-          out.print(rname);
-         
-    	
-    	
-    	
-        
+  		  out.write("success".getBytes());   
+          	 
+  		  
+
+  		
+  		
+    		    		        
     }
 
 }
-
 

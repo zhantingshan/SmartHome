@@ -24,4 +24,12 @@ public interface UserDao {
 	public JSONArray getRoomname(User user);
 	
 	public JSONArray getHname(User user,String name);
+	
+	public void inserthname(User user,String rname,String hname);
+	
+	public void insertrname(User user,String rname);
+	
+	public void deleteroom(User user,String rname);
+	
+	public void deletehname(User user,String rname,String hname);
 }
